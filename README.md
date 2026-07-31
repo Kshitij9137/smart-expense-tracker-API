@@ -64,6 +64,7 @@ pytest
 | GET    | `/expenses?category={category}`    | List expenses filtered by category   |
 | GET    | `/expenses/total`                  | Get overall total of all expenses    |
 | GET    | `/expenses/total?category={category}` | Get total for a specific category |
+| GET    | `/expenses/search?q={keyword}`     | Search expenses by keyword in title  |
 | DELETE | `/expenses/{id}`                   | Delete an expense by id              |
 
 ### Example: Add an expense
@@ -93,6 +94,13 @@ curl http://127.0.0.1:8000/expenses/total
 curl "http://127.0.0.1:8000/expenses/total?category=Food"
 ```
 
+### Example: Search expenses
+
+​```bash
+curl "http://127.0.0.1:8000/expenses/search?q=coffee"
+​```
+
+
 ### Example: Delete an expense
 
 ```bash
@@ -108,4 +116,5 @@ curl -X DELETE http://127.0.0.1:8000/expenses/{id}
 
 ## Bonus
 
+- **Search expenses**: `GET /expenses/search?q={keyword}` — case-insensitive search on expense title.
 - Interactive OpenAPI/Swagger documentation available at `/docs` (and ReDoc at `/redoc`), generated automatically by FastAPI.

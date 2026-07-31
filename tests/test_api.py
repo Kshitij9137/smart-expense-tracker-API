@@ -17,6 +17,12 @@ def reset_storage():
     yield
 
 
+
+def test_root_endpoint():
+    response = client.get("/")
+    assert response.status_code == 200
+
+
 def sample_expense(**overrides):
     """Helper to build a valid expense payload, with optional field overrides."""
     data = {
@@ -137,3 +143,21 @@ def test_delete_expense_success():
 def test_delete_nonexistent_expense_returns_404():
     response = client.delete("/expenses/some-fake-id-that-does-not-exist")
     assert response.status_code == 404
+
+
+# ---------- GET /expenses/search ----------
+
+def test_search_expenses_by_title():
+    client.post("/expenses", json=sample_expense(title="Morning Coffee"))
+    client.post("/expenses", json=sample_expense(title="Bus ticket", category="Travel"))
+    response = client.get("/expenses/search", params={"q": "coffee"})
+    assert response.status_code == 200
+    results = response.json()
+    assert len(results) == 1
+    assert results[0]["title"] == "Morning Coffee"
+
+
+def test_search_expenses_no_match_returns_empty():
+    client.post("/expenses", json=sample_expense(title="Coffee"))
+    response = client.get("/expenses/search", params={"q": "zzz-nomatch"})
+    assert response.json() == []

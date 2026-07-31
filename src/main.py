@@ -11,6 +11,12 @@ app = FastAPI(
 )
 
 
+@app.get("/")
+def root():
+    """Simple root endpoint so / doesn't 404 — points people to the docs."""
+    return {"message": "Smart Expense Tracker API is running. See /docs for API documentation."}
+
+
 @app.post("/expenses", response_model=Expense, status_code=status.HTTP_201_CREATED)
 def add_expense(expense: ExpenseCreate):
     """Add a new expense."""
@@ -24,6 +30,15 @@ def list_expenses(category: Optional[str] = None):
     Optional query param: /expenses?category=Food
     """
     return storage.get_all(category=category)
+
+
+@app.get("/expenses/search", response_model=List[Expense])
+def search_expenses(q: str):
+    """
+    Search expenses by keyword in the title.
+    Example: /expenses/search?q=coffee
+    """
+    return storage.search(q)
 
 
 @app.get("/expenses/total")

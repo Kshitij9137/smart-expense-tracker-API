@@ -33,6 +33,11 @@ class ExpenseStorage:
         self._expenses = [e for e in self._expenses if e.id != expense_id]
         return len(self._expenses) < original_length
 
+    def search(self, keyword: str) -> List[Expense]:
+        """Case-insensitive search on expense title."""
+        keyword_lower = keyword.lower()
+        return [e for e in self._expenses if keyword_lower in e.title.lower()]
+
 
 # A single shared instance used by the whole app.
 # This is a simple form of dependency — good enough for this assignment's scope.
