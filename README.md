@@ -1,6 +1,6 @@
 # Smart Expense Tracker API
 
-A REST API to manage personal expenses — add, view, filter by category, calculate totals (overall and by category), and delete. Built with Python and FastAPI, using in-memory storage.
+A REST API to manage personal expenses with features to add, view, filter by category, search by keyword, calculate totals (overall and by category) and delete expenses.
 
 ## Tech Stack
 
@@ -13,7 +13,7 @@ A REST API to manage personal expenses — add, view, filter by category, calcul
 ## Project Structure
 
 ```
-your-repo/
+smart-expense-tracker-API/
   README.md
   AI_NOTES.md
   requirements.txt
@@ -31,7 +31,7 @@ Clone the repo, then from the project root:
 
 ```bash
 python3 -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
+source venv/bin/activate        # For Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
