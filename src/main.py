@@ -3,6 +3,7 @@ from typing import Optional, List
 
 from src.models import Expense, ExpenseCreate
 from src.storage import storage
+from fastapi.responses import RedirectResponse
 
 app = FastAPI(
     title="Smart Expense Tracker API",
@@ -11,10 +12,11 @@ app = FastAPI(
 )
 
 
-@app.get("/")
+
+@app.get("/", include_in_schema=False)
 def root():
-    """Simple root endpoint so / doesn't 404 — points people to the docs."""
-    return {"message": "Smart Expense Tracker API is running. See /docs for API documentation."}
+    """Redirect the root URL to the interactive API docs."""
+    return RedirectResponse(url="/docs")
 
 
 @app.post("/expenses", response_model=Expense, status_code=status.HTTP_201_CREATED)

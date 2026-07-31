@@ -18,9 +18,11 @@ def reset_storage():
 
 
 
-def test_root_endpoint():
-    response = client.get("/")
-    assert response.status_code == 200
+def test_root_redirects_to_docs():
+    response = client.get("/", follow_redirects=False)
+    assert response.status_code == 307
+    assert response.headers["location"] == "/docs"
+    
 
 
 def sample_expense(**overrides):
