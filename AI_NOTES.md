@@ -62,4 +62,4 @@ Finally, I used separate request (`ExpenseCreate`) and response (`Expense`) mode
 
 ## Reflection
 
-I evaluate every AI suggestion against the assignment requirements and best practices before accepting it. I'm in control of the development process - AI is a productivity tool, not a replacement for understanding or judgment.
+I evaluate every AI suggestion against the assignment requirements and best practices before accepting it. I'm in control of the development process.
