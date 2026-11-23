@@ -53,7 +53,7 @@ def test_add_expense_missing_field_fails():
     payload = sample_expense()
     del payload["title"]
     response = client.post("/expenses", json=payload)
-    assert response.status_code == 422  # FastAPI's validation error code
+    assert response.status_code == 422  # FastAPI validation error code
 
 
 def test_add_expense_negative_amount_fails():
@@ -104,7 +104,7 @@ def test_filter_expenses_by_nonexistent_category_returns_empty():
     assert response.json() == []
 
 
-# ---------- GET /expenses/total ----------
+# ---------- GET /expenses/total ---------
 
 def test_total_overall():
     client.post("/expenses", json=sample_expense(amount=10))
@@ -129,7 +129,7 @@ def test_total_with_no_expenses_is_zero():
     assert response.json()["total"] == 0
 
 
-# ---------- DELETE /expenses/{id} ----------
+# ---------- DELETE /expenses/{id} ---------
 
 def test_delete_expense_success():
     create_response = client.post("/expenses", json=sample_expense())
@@ -147,7 +147,7 @@ def test_delete_nonexistent_expense_returns_404():
     assert response.status_code == 404
 
 
-# ---------- GET /expenses/search ----------
+# ---------- GET /expenses/search ---------
 
 def test_search_expenses_by_title():
     client.post("/expenses", json=sample_expense(title="Morning Coffee"))
