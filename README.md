@@ -118,3 +118,7 @@ curl -X DELETE http://127.0.0.1:8000/expenses/{id}
 
 - **Search expenses**: `GET /expenses/search?q={keyword}` — case-insensitive search on expense title.
 - Interactive OpenAPI/Swagger documentation available at `/docs` (and ReDoc at `/redoc`), generated automatically by FastAPI.
+
+
+## Author
+Kshitij Gupta
